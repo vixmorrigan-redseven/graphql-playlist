@@ -14,14 +14,28 @@ const {
 var books = [
   { name: "Name of the Wind", genre: "Fantasy", id: "1", authorId: "1" },
   { name: "A Feast of Crows", genre: "Fantasy", id: "2", authorId: "2" },
-  { name: "The Long Earth", genre: "Sci-fi", id: "3", authorId: "3" }
+  { name: "The Long Earth", genre: "Sci-fi", id: "3", authorId: "3" },
+  { name: "A Game of Thrones", genre: "Fantasy", id: "4", authorId: "2" },
+  {
+    name: "A Dance with Dragons: Part 1",
+    genre: "Fantasy",
+    id: "5",
+    authorId: "2"
+  },
+  {
+    name: "Harry Potter & The Half-Blood Prince",
+    genre: "Fantasy",
+    id: "5",
+    authorId: "4"
+  }
 ];
 
 // further dummy data
 var authors = [
   { name: "Patrick Rothfuss", age: 44, id: "1" },
   { name: "George R.R. Martin", age: 42, id: "2" },
-  { name: "Terry Pratchett", age: 66, id: "3" }
+  { name: "Terry Pratchett", age: 66, id: "3" },
+  { name: "J K Rowling", age: 53, id: "4" }
 ];
 
 const BookType = new GraphQLObjectType({
