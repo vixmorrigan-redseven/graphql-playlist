@@ -17,13 +17,13 @@ var books = [
   { name: "The Long Earth", genre: "Sci-fi", id: "3", authorId: "3" },
   { name: "A Game of Thrones", genre: "Fantasy", id: "4", authorId: "2" },
   {
-    name: "A Dance with Dragons: Part 1",
+    name: "A Dance with Dragons Part 1",
     genre: "Fantasy",
     id: "5",
     authorId: "2"
   },
   {
-    name: "Harry Potter & The Half-Blood Prince",
+    name: "Harry Potter: The Half-Blood Prince",
     genre: "Fantasy",
     id: "5",
     authorId: "4"
@@ -38,6 +38,22 @@ var authors = [
   { name: "J K Rowling", age: 53, id: "4" }
 ];
 
+// wrap in function to prevent undefined error
+const AuthorType = new GraphQLObjectType({
+  name: "Author",
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    age: { type: GraphQLInt },
+    books: {
+      type: new GraphQLList(BookType),
+      resolve(parent, args) {
+        return _.filter(books, { authorId: parent.id }); // look through the books array, filter those who have same authorID & show them only
+      }
+    }
+  })
+});
+
 const BookType = new GraphQLObjectType({
   name: "Book",
   fields: () => ({
@@ -50,15 +66,6 @@ const BookType = new GraphQLObjectType({
         return _.find(authors, { id: parent.authorId });
       }
     }
-  })
-});
-// wrap in function to prevent undefined error
-const AuthorType = new GraphQLObjectType({
-  name: "Author",
-  fields: () => ({
-    id: { type: GraphQLID },
-    name: { type: GraphQLString },
-    age: { type: GraphQLInt }
   })
 });
 
